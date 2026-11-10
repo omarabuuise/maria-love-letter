@@ -1,1 +1,113 @@
 
+<!DOCTYPE html>
+<html lang="so">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Maria ❤️</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;min-height:100vh;display:grid;place-items:center;
+ padding:20px;font-family:Georgia,serif;color:#fff0f5;
+ background:radial-gradient(circle at top,#65334f,#1b1020 70%);
+}
+.card{
+ width:min(100%,480px);padding:35px 25px;text-align:center;
+ background:#ffffff0d;border:1px solid #ffffff30;
+ border-radius:25px;box-shadow:0 20px 70px #0008;
+}
+.small{letter-spacing:4px;color:#eac5d2;font:11px Arial}
+h1{font-size:55px;color:#ffb5cc;margin:22px 0 10px}
+p{line-height:1.8;color:#f0dce5;font-size:15px}
+.gift{font-size:85px;background:none;border:0;cursor:pointer;
+ animation:bounce 1.5s infinite}
+@keyframes bounce{50%{transform:translateY(-12px)}}
+.letter{display:none;text-align:left;background:#ffffff10;
+ padding:22px;border-radius:16px;margin-top:20px}
+.letter.show{display:block;animation:appear .8s}
+@keyframes appear{from{opacity:0;transform:translateY(20px)}to{opacity:1}}
+h2{text-align:center;color:#ffb5cc}
+button.answer{border:0;padding:13px 18px;border-radius:30px;
+ margin:5px;cursor:pointer;font-weight:bold}
+.yes{background:#f18aaa;color:#29131e}
+.later{background:#ffffff20;color:white}
+#reply{color:#ffb5cc;text-align:center}
+</style>
+</head>
+<body>
+<main class="card">
+ <div class="small">A SPECIAL MESSAGE FOR YOU</div>
+ <h1>Maria.</h1>
+ <p>Wax yar ayaan qalbigayga kaaga diyaariyey.<br>
+ Hadiyaddan fur si aad u ogaato. ❤️</p>
+
+ <button class="gift" onclick="openGift()">🎁</button>
+ <div style="font:12px Arial;color:#eac5d2">
+ TAABO SI AAD U FURTO
+ </div>
+
+ <section class="letter" id="letter">
+  <h2>Dear Maria ❤️</h2>
+  <p>
+  Mararka qaar qof ayaa noloshaada ku soo gala,
+  isaga oo aan wax badan samayn, haddana maalintaada
+  ka dhiga mid ka qurux badan sidii hore.
+  Adiga sidaas ayaad ii tahay.
+  </p>
+  <p>
+  Dhoolla-caddayntaada iyo hadalkaaga waxay leeyihiin
+  meel gaar ah oo qalbigayga kaga jirta.
+  </p>
+  <p>
+  Waxaan rabaa inaan si daacad ah kuu sheego
+  waxa aan muddo dareemayay:
+  <strong style="color:#ffb5cc">Maria, waan ku jeclahay.</strong>
+  </p>
+  <p>
+  Ma doonayo inaan kugu cadaadiyo jawaab.
+  Waxaan kaliya rabay inaad ogaato dareenkayga.
+  Haddii aad fursad ii siiso, waxaan jeclaan lahaa
+  inaan si dhab ah oo tartiib ah kuu barto.
+  </p>
+  <h2>Maria, ma ii oggolaanaysaa inaan si gaar ah kuu barto? 🌹</h2>
+  <div style="text-align:center">
+   <button class="answer yes" onclick="reply(true)">
+   Haa ❤️
+   </button>
+   <button class="answer later" onclick="reply(false)">
+   Aan ka fikiro 🌷
+   </button>
+  </div>
+  <p id="reply"></p>
+ </section>
+ <p style="font-size:11px;color:#b995a7;margin-top:25px">
+ MADE WITH LOVE · JUST FOR MARIA
+ </p>
+</main>
+<script>
+function openGift(){
+ document.getElementById('letter').classList.add('show');
+ document.querySelector('.gift').textContent='💝';
+}
+function reply(answer){
+ const r=document.getElementById('reply');
+ r.textContent=answer?
+ '❤️ Farxad weyn ayay ii tahay, Maria!':
+ '🌷 Waqtigaaga qaado, Maria. Waan ixtiraamayaa dareenkaaga.';
+ if(answer){
+  for(let i=0;i<18;i++){
+   let h=document.createElement('span');
+   h.textContent='💗';
+   h.style.cssText='position:fixed;left:'+Math.random()*100+
+   'vw;bottom:0;font-size:25px;pointer-events:none;transition:3s';
+   document.body.appendChild(h);
+   setTimeout(()=>{h.style.transform='translateY(-100vh)';h.style.opacity='0'},50);
+   setTimeout(()=>h.remove(),3100);
+  }
+ }
+}
+</script>
+</body>
+</html>
+
