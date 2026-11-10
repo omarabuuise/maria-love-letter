@@ -3,110 +3,350 @@
 <html lang="so">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Maria ❤️</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#090711">
+<title>Maria | A Secret From My Heart</title>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap');
+
+:root{
+ --bg:#090711;
+ --pink:#ff91b5;
+ --rose:#e84d83;
+ --gold:#e9c99e;
+ --white:#fff2f5;
+ --muted:#c4aab7;
+}
 *{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
- margin:0;min-height:100vh;display:grid;place-items:center;
- padding:20px;font-family:Georgia,serif;color:#fff0f5;
- background:radial-gradient(circle at top,#65334f,#1b1020 70%);
+ margin:0;min-height:100vh;overflow-x:hidden;
+ background:var(--bg);color:var(--white);
+ font-family:'DM Sans',sans-serif;
 }
-.card{
- width:min(100%,480px);padding:35px 25px;text-align:center;
- background:#ffffff0d;border:1px solid #ffffff30;
- border-radius:25px;box-shadow:0 20px 70px #0008;
+button{font:inherit}
+#stars{
+ position:fixed;inset:0;width:100%;height:100%;
+ pointer-events:none;z-index:0;
 }
-.small{letter-spacing:4px;color:#eac5d2;font:11px Arial}
-h1{font-size:55px;color:#ffb5cc;margin:22px 0 10px}
-p{line-height:1.8;color:#f0dce5;font-size:15px}
-.gift{font-size:85px;background:none;border:0;cursor:pointer;
- animation:bounce 1.5s infinite}
-@keyframes bounce{50%{transform:translateY(-12px)}}
-.letter{display:none;text-align:left;background:#ffffff10;
- padding:22px;border-radius:16px;margin-top:20px}
-.letter.show{display:block;animation:appear .8s}
-@keyframes appear{from{opacity:0;transform:translateY(20px)}to{opacity:1}}
-h2{text-align:center;color:#ffb5cc}
-button.answer{border:0;padding:13px 18px;border-radius:30px;
- margin:5px;cursor:pointer;font-weight:bold}
-.yes{background:#f18aaa;color:#29131e}
-.later{background:#ffffff20;color:white}
-#reply{color:#ffb5cc;text-align:center}
+.ambient{
+ position:fixed;inset:0;pointer-events:none;
+ background:
+ radial-gradient(ellipse at 50% 35%,#6e20442b,transparent 55%),
+ radial-gradient(ellipse at 10% 90%,#38204b35,transparent 50%);
+}
+.page{
+ min-height:100svh;position:relative;z-index:1;
+ display:grid;place-items:center;padding:24px 17px;
+}
+.scene{
+ width:min(100%,550px);text-align:center;
+ animation:sceneIn 1.5s ease both;
+}
+@keyframes sceneIn{
+ from{opacity:0;transform:translateY(25px)}
+ to{opacity:1;transform:translateY(0)}
+}
+.top{
+ font-size:10px;letter-spacing:4px;
+ color:var(--gold);text-transform:uppercase;
+}
+.line{
+ width:55px;height:1px;margin:22px auto;
+ background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+.pretitle{
+ font-size:13px;letter-spacing:2px;color:var(--muted);
+ margin-top:25px;
+}
+h1{
+ font-family:'Cormorant Garamond',serif;
+ font-size:clamp(60px,15vw,100px);
+ font-weight:500;line-height:.95;
+ margin:15px 0;
+ background:linear-gradient(130deg,#fff,#ffabc5 45%,#c27a9e);
+ -webkit-background-clip:text;background-clip:text;
+ color:transparent;
+}
+.intro{
+ color:var(--muted);font-size:13px;
+ line-height:2;max-width:370px;margin:20px auto;
+}
+.stage{
+ height:210px;display:grid;place-items:center;
+ perspective:1000px;margin:15px 0;
+}
+.envelope{
+ position:relative;width:185px;height:125px;
+ border:0;background:none;cursor:pointer;
+ filter:drop-shadow(0 15px 35px #e84d8340);
+ transition:transform .5s;
+}
+.envelope:hover{transform:translateY(-8px) scale(1.04)}
+.env-base{
+ position:absolute;inset:20px 0 0;
+ background:linear-gradient(140deg,#a52e60,#541a42);
+ border-radius:5px 5px 12px 12px;
+ overflow:hidden;
+}
+.env-base:before,.env-base:after{
+ content:"";position:absolute;bottom:0;
+ width:0;height:0;border-style:solid;
+ border-width:0 93px 92px;
+ border-color:transparent transparent #7b204c;
+}
+.env-base:before{left:0}
+.env-base:after{right:0}
+.flap{
+ position:absolute;top:20px;left:0;width:0;height:0;
+ border-left:92px solid transparent;
+ border-right:92px solid transparent;
+ border-top:75px solid #e65b8a;
+ transform-origin:top;
+ transition:transform 1s cubic-bezier(.2,.8,.2,1);
+ z-index:4;
+}
+.seal{
+ position:absolute;z-index:5;left:50%;top:67px;
+ transform:translateX(-50%);
+ width:37px;height:37px;border-radius:50%;
+ background:radial-gradient(circle at 30% 25%,#ffc4d7,#bd386c);
+ display:grid;place-items:center;
+ color:white;font-size:18px;
+ box-shadow:0 0 20px #f16b9a80;
+ transition:opacity .3s;
+}
+.envelope.open .flap{transform:rotateX(180deg)}
+.envelope.open .seal{opacity:0}
+.envelope.open{pointer-events:none}
+.hint{
+ color:#c998ad;font-size:10px;
+ letter-spacing:2px;text-transform:uppercase;
+ animation:pulse 2s infinite;
+}
+@keyframes pulse{50%{opacity:.4}}
+.btn{
+ margin-top:20px;border:1px solid #f18aa954;
+ padding:14px 25px;border-radius:50px;
+ color:white;background:linear-gradient(110deg,#a92e61,#e65c91);
+ box-shadow:0 0 30px #e84d8330;
+ cursor:pointer;font-size:11px;letter-spacing:1px;
+ transition:.3s;
+}
+.btn:hover{transform:translateY(-3px);box-shadow:0 0 40px #e84d8370}
+.hidden{display:none!important}
+#letterScene{
+ width:min(100%,600px);padding:20px 0;
+ animation:sceneIn 1s ease both;
+}
+.letter-card{
+ padding:clamp(25px,6vw,48px);
+ background:linear-gradient(145deg,#ffffff0c,#ffffff04);
+ border:1px solid #f7bfd225;
+ border-radius:4px 24px 4px 24px;
+ box-shadow:0 20px 80px #0008;
+ position:relative;
+}
+.letter-card:before{
+ content:"";position:absolute;inset:8px;
+ border:1px solid #e8b4c51b;
+ pointer-events:none;border-radius:3px 18px 3px 18px;
+}
+.letter-kicker{
+ font-size:9px;letter-spacing:4px;color:var(--gold);
+ text-transform:uppercase;
+}
+.letter-title{
+ font:500 clamp(34px,9vw,49px)/1.1 'Cormorant Garamond',serif;
+ color:#ffb3ca;margin:23px 0;
+}
+.letter-body{
+ text-align:left;color:#e8d5df;
+ font:400 15px/2 'Cormorant Garamond',serif;
+}
+.letter-body p{margin:0 0 17px}
+.highlight{color:#ff9cbb;font-weight:700}
+.signature{
+ text-align:right;color:var(--gold);
+ font:italic 25px 'Cormorant Garamond',serif;
+ margin-top:28px;
+}
+.question{
+ font:500 30px/1.25 'Cormorant Garamond',serif;
+ color:#ffe5ed;margin:32px 0 20px;
+}
+.answers{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.answer{
+ border-radius:50px;padding:13px 20px;
+ font-size:11px;cursor:pointer;transition:.3s;
+}
+.answer:hover{transform:scale(1.05)}
+.answer.yes{background:#e85a8e;border:1px solid #ffb2cb;color:white}
+.answer.wait{background:#ffffff08;border:1px solid #ffffff35;color:#f5dce6}
+#response{
+ color:#ffc0d4;font-size:13px;line-height:1.8;
+ margin-top:20px;min-height:25px;
+}
+.end{
+ margin-top:32px;font-size:9px;letter-spacing:3px;
+ color:#997c8e;
+}
+#hearts{position:fixed;inset:0;pointer-events:none;z-index:5;overflow:hidden}
+.heart{
+ position:absolute;bottom:-30px;
+ animation:rise 4s ease-out forwards;
+}
+@keyframes rise{
+ to{transform:translateY(-110vh) rotate(40deg);opacity:0}
+}
+@media(max-width:400px){
+ .stage{height:185px}
+ .letter-body{font-size:14px}
+}
+@media(prefers-reduced-motion:reduce){
+ *,*:before,*:after{animation:none!important;transition:none!important}
+}
 </style>
 </head>
 <body>
-<main class="card">
- <div class="small">A SPECIAL MESSAGE FOR YOU</div>
+<canvas id="stars"></canvas>
+<div class="ambient"></div>
+<div id="hearts"></div>
+
+<main class="page">
+<section class="scene" id="intro">
+ <div class="top">✦ A PRIVATE LITTLE SURPRISE ✦</div>
+ <div class="line"></div>
+ <div class="pretitle">Some feelings deserve their own moment</div>
  <h1>Maria.</h1>
- <p>Wax yar ayaan qalbigayga kaaga diyaariyey.<br>
- Hadiyaddan fur si aad u ogaato. ❤️</p>
-
- <button class="gift" onclick="openGift()">🎁</button>
- <div style="font:12px Arial;color:#eac5d2">
- TAABO SI AAD U FURTO
- </div>
-
- <section class="letter" id="letter">
-  <h2>Dear Maria ❤️</h2>
-  <p>
-  Mararka qaar qof ayaa noloshaada ku soo gala,
-  isaga oo aan wax badan samayn, haddana maalintaada
-  ka dhiga mid ka qurux badan sidii hore.
-  Adiga sidaas ayaad ii tahay.
-  </p>
-  <p>
-  Dhoolla-caddayntaada iyo hadalkaaga waxay leeyihiin
-  meel gaar ah oo qalbigayga kaga jirta.
-  </p>
-  <p>
-  Waxaan rabaa inaan si daacad ah kuu sheego
-  waxa aan muddo dareemayay:
-  <strong style="color:#ffb5cc">Maria, waan ku jeclahay.</strong>
-  </p>
-  <p>
-  Ma doonayo inaan kugu cadaadiyo jawaab.
-  Waxaan kaliya rabay inaad ogaato dareenkayga.
-  Haddii aad fursad ii siiso, waxaan jeclaan lahaa
-  inaan si dhab ah oo tartiib ah kuu barto.
-  </p>
-  <h2>Maria, ma ii oggolaanaysaa inaan si gaar ah kuu barto? 🌹</h2>
-  <div style="text-align:center">
-   <button class="answer yes" onclick="reply(true)">
-   Haa ❤️
-   </button>
-   <button class="answer later" onclick="reply(false)">
-   Aan ka fikiro 🌷
-   </button>
-  </div>
-  <p id="reply"></p>
- </section>
- <p style="font-size:11px;color:#b995a7;margin-top:25px">
- MADE WITH LOVE · JUST FOR MARIA
+ <p class="intro">
+  Waxaa jira fariimo aan lagu qori karin chat caadi ah...
+  iyo dareen mudan in loo sameeyo waqti u gaar ah.
+  <br>Kan adiga ayuu kuu gaar yahay.
  </p>
+
+ <div class="stage">
+  <button class="envelope" id="envelope" aria-label="Fur warqadda">
+   <div class="env-base"></div>
+   <div class="flap"></div>
+   <div class="seal">♥</div>
+  </button>
+ </div>
+ <div class="hint" id="hint">A little secret is waiting for you</div>
+ <button class="btn" id="open">OPEN YOUR LETTER ✦</button>
+ <div class="end">CREATED WITH A SINCERE HEART</div>
+</section>
+
+<section id="letterScene" class="hidden">
+ <div class="top">✦ SOMETHING I WANTED TO TELL YOU ✦</div>
+ <div class="line"></div>
+ <article class="letter-card">
+  <div class="letter-kicker">A letter, just for Maria</div>
+  <h2 class="letter-title">Dear Maria,</h2>
+  <div class="letter-body">
+   <p>Ma garanayo goorta saxda ah ee aad qalbigayga meel gaar ah ka gashay. Waxa keliya ee aan ogahay waa in mar kasta oo aan kula hadlo, ay jirto farxad aanan si fudud u sharxi karin.</p>
+
+   <p>Dunidu waxay leedahay dad badan, laakiin qof walba ma laha awood uu maalintaada uga dhigo mid ka duwan. <span class="highlight">Adiga waxaad leedahay wax kuu gaar ah.</span></p>
+
+   <p>Mararka qaar waxaan is weydiiyaa sida qof keliya uu u noqon karo fikirka quruxda badan ee maalintaada dhex mara. Kadib waxaan ogaadaa in aan adiga kaa fikirayo.</p>
+
+   <p>Maanta ma doonayo inaan hadal badan ku qariyo waxa aan dareemayo. Waxaan rabaa inaan si cad oo daacad ah kuu iraahdo:</p>
+
+   <p class="highlight" style="font-size:23px;text-align:center">
+    Maria, qalbigaygu adiga ayuu kuu janjeeraa. Waan ku jeclahay. ❤️
+   </p>
+
+   <p>Ma filayo in hal fariin ay wax walba beddesho. Mana doonayo inaad dareento cadaadis. Waxaan jeclaan lahaa oo keliya inaan fursad u helo inaan ku barto, ku qadariyo, oo aan si tartiib ah u aragno halka sheekadeennu ina gaarsiin karto.</p>
+
+   <p>Haddii aad ogaato hal shay oo fariintan ku jira, ha noqdo kan: dareenkaygu waa daacad, adiguna waxaad mudan tahay in si qurux badan laguu qadariyo.</p>
+  </div>
+  <div class="signature">With all sincerity, ❤️</div>
+ </article>
+
+ <div class="question">
+  Maria, ma ii oggolaanaysaa inaan noqdo qof si gaar ah kuu barta?
+ </div>
+ <div class="answers">
+  <button class="answer yes" id="yes">Haa, aan isku dayno ❤️</button>
+  <button class="answer wait" id="wait">Waqti i sii 🌷</button>
+ </div>
+ <div id="response"></div>
+ <div class="end">THIS MOMENT WAS MADE JUST FOR YOU · MARIA</div>
+</section>
 </main>
+
 <script>
-function openGift(){
- document.getElementById('letter').classList.add('show');
- document.querySelector('.gift').textContent='💝';
+// Starfield animation
+const canvas=document.getElementById('stars');
+const ctx=canvas.getContext('2d');
+let stars=[];
+function resize(){
+ canvas.width=innerWidth*devicePixelRatio;
+ canvas.height=innerHeight*devicePixelRatio;
+ ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+ stars=Array.from({length:Math.min(110,Math.floor(innerWidth/5))},()=>({
+  x:Math.random()*innerWidth,y:Math.random()*innerHeight,
+  r:Math.random()*1.4+.2,a:Math.random(),speed:Math.random()*.008+.002
+ }));
 }
-function reply(answer){
- const r=document.getElementById('reply');
- r.textContent=answer?
- '❤️ Farxad weyn ayay ii tahay, Maria!':
- '🌷 Waqtigaaga qaado, Maria. Waan ixtiraamayaa dareenkaaga.';
- if(answer){
-  for(let i=0;i<18;i++){
-   let h=document.createElement('span');
-   h.textContent='💗';
-   h.style.cssText='position:fixed;left:'+Math.random()*100+
-   'vw;bottom:0;font-size:25px;pointer-events:none;transition:3s';
-   document.body.appendChild(h);
-   setTimeout(()=>{h.style.transform='translateY(-100vh)';h.style.opacity='0'},50);
-   setTimeout(()=>h.remove(),3100);
-  }
+function draw(){
+ ctx.clearRect(0,0,innerWidth,innerHeight);
+ stars.forEach(s=>{
+  s.a+=s.speed;
+  let alpha=.2+Math.abs(Math.sin(s.a))*.7;
+  ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+  ctx.fillStyle=`rgba(255,190,215,${alpha})`;ctx.fill();
+ });
+ requestAnimationFrame(draw);
+}
+resize();draw();
+addEventListener('resize',resize);
+
+// Envelope reveal
+const envelope=document.getElementById('envelope');
+const openBtn=document.getElementById('open');
+let opened=false;
+function reveal(){
+ if(opened)return;
+ opened=true;
+ envelope.classList.add('open');
+ document.getElementById('hint').textContent='Your letter is opening...';
+ openBtn.textContent='✦ ONE MOMENT ✦';
+ openBtn.disabled=true;
+ setTimeout(()=>{
+  document.getElementById('intro').classList.add('hidden');
+  document.getElementById('letterScene').classList.remove('hidden');
+  window.scrollTo({top:0,behavior:'smooth'});
+ },1200);
+}
+envelope.addEventListener('click',reveal);
+openBtn.addEventListener('click',reveal);
+
+// Floating hearts
+function celebrate(){
+ const holder=document.getElementById('hearts');
+ const symbols=['♥','♡','✦','💗'];
+ for(let i=0;i<35;i++){
+  const el=document.createElement('span');
+  el.className='heart';
+  el.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+  el.style.left=Math.random()*100+'%';
+  el.style.fontSize=(12+Math.random()*24)+'px';
+  el.style.color=['#ff91b5','#f4c9d8','#e9c99e'][Math.floor(Math.random()*3)];
+  el.style.animationDelay=Math.random()*1.2+'s';
+  holder.appendChild(el);
+  setTimeout(()=>el.remove(),5500);
  }
 }
+document.getElementById('yes').addEventListener('click',()=>{
+ document.getElementById('response').textContent=
+ '❤️ Waad iga farxisay, Maria. Aan si daacad ah oo qurux badan u bilowno sheekadeenna.';
+ celebrate();
+});
+document.getElementById('wait').addEventListener('click',()=>{
+ document.getElementById('response').textContent=
+ '🌷 Waqtigaaga qaado, Maria. Dareenkaaga iyo go’aankaaga waan ixtiraamayaa.';
+});
 </script>
 </body>
 </html>
